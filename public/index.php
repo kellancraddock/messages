@@ -21,6 +21,14 @@ Zend_Loader::loadClass('Zend_View_Helper_Abstract');
 Zend_Loader::loadClass('Zend_View');
 Zend_Loader::loadClass('Zend_Session');
 Zend_Loader::loadClass('Zend_Session_Namespace');
+Zend_Loader::loadClass('Zend_Layout');
+
+//StartMVC
+$options = array(
+    'layout'     => 'default',
+    'layoutPath' => '../app/views/layouts',
+);
+$layout = Zend_Layout::startMvc($options);
 
 //Set up DB factory Config
 $config = new Zend_Config(
@@ -29,9 +37,9 @@ $config = new Zend_Config(
 			'adapter' => 'Mysqli',
 			'params' => array(
 				'host' => 'localhost',
-				'dbname' => 'linkproject',
-				'username' => 'basic_user',
-				'password' => 'basic_user',
+				'dbname' => 'messages',
+				'username' => 'root',
+				'password' => 'root',
 			)
 		)
 	)
@@ -45,19 +53,19 @@ $db = Zend_Db::factory( $config->database );
 Zend_DB_Table_Abstract::setDefaultAdapter($db);
 
 //Register Helpers with Brokers
-Zend_Controller_Action_HelperBroker::addPath('../application/helpers/actions', 'Helper_');
+//Zend_Controller_Action_HelperBroker::addPath('../application/helpers/actions', 'Helper_');
 
 //Set View Helpers
-$view = new Zend_View();
-$view->addHelperPath('../application/helpers/views/', 'View_Helper_');			
-$renderer = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer');
-$renderer->setView($view);
+//$view = new Zend_View();
+//$view->addHelperPath('../application/helpers/views/', 'View_Helper_');			
+//$renderer = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer');
+//$renderer->setView($view);
 
 //Get Front Controller
 $front = Zend_Controller_Front::getInstance();
 
 //Set Controllers
-$front->setControllerDirectory('../application/controllers');
+$front->setControllerDirectory('../app/controllers');
 $front->throwExceptions(false);
 $front->dispatch();
 ?>
