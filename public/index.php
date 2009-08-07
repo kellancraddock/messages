@@ -24,11 +24,11 @@ Zend_Loader::loadClass('Zend_Session_Namespace');
 Zend_Loader::loadClass('Zend_Layout');
 
 //StartMVC
-$options = array(
+$mvc_options = array(
     'layout'     => 'default',
     'layoutPath' => '../app/views/layouts',
 );
-$layout = Zend_Layout::startMvc($options);
+$layout = Zend_Layout::startMvc($mvc_options);
 
 //Set up DB factory Config
 $config = new Zend_Config(
