@@ -8,27 +8,44 @@
 <body>
 	<div id="wrapper">
 		<div id="controls">
-			<form id="add_author" action="addAuthor" method="post">
+			<form id="add_author" action="/index/addauthor" method="post">
 				<fieldset>
-					<label for="new_author">Add an Author</label>
-					<input type="text" name="new_author" id="new_author" />
+					<label for="first_name">Add an Author</label>
+					<input type="text" name="first_name" id="first_name" value="first"/>
+					<input type="text" name="last_name" id="last_name" value="last"/>
 					<input type="submit" value="Submit" />
 				</fieldset>
 			</form>
-			<form id="add_message" action="addMessage" method="post">
+			<form id="add_message" action="/index/addmessage" method="post">
 				<fieldset>
 					<label for="message">Message</label>
 					<input type="text" id="message" name="message" />
 					<label for="author">By:</label>
-					<select>
-						<option value="default">default</option>
+					<select id="author" name="author">
+						<?php
+							foreach($this->authors as $author) {
+								echo '<option value="' . $author['id'] . '">' . $author['first_name'] . ' ' . $author['last_name'] . '</option>';
+							}
+						?>
 					</select>
 					<input type="submit" value="Submit" />
 				</fieldset>
 			</form>
 		</div>
+		<div id="messages">
+			<?php
+				foreach($this->messages as $message) {
+					echo '<div>';
+					echo '<p>';
+					echo $message['message'];
+					echo '<a href="/index/deletemessage/id/' . $message['id'] . ' ' . '">Delete</a>';
+					echo '</p>';
+					echo '</div>';  
+				}
+			?>
+		</div>
 		<?= $this->layout()->content ?>
 	</div>
-	<p>Basic Page</p>
+	<?= $this->alert ?>
 </body>
 </html>
