@@ -3,6 +3,18 @@
 	{
 		private $table = "authors";
 		
+		function getAuthor($arguments)
+		{
+			//Connect to database
+			$db = $this->getDefaultAdapter();
+			
+			//Set arguments to select statement
+			$select = "SELECT * FROM $this->table WHERE id = '{$arguments[0]}'";
+		
+			//Select from table
+			return $db->fetchAssoc($select);
+		}
+
 		function getAuthors()
 		{
 			//Connect to database
