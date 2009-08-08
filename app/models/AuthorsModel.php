@@ -41,5 +41,22 @@
 			//Insert into table
 			return $db->insert($this->table, $insertArgs);
 		}
+		
+		function updateAuthor($arguments)
+		{
+			//Connect to database
+			$db = $this->getDefaultAdapter();
+		
+			//Set arguments to Zend insert associative array
+			$insertArgs = array(
+				'first_name'        => $arguments[1],
+				'last_name'         => $arguments[2],
+				);
+				
+			$where[] = "id = '{$arguments[0]}'";
+			
+			//Update
+			return $db->update($this->table, $insertArgs, $where);
+		}
 	}
 ?>
