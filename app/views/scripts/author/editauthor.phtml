@@ -1,0 +1,14 @@
+<form id="add_author" action="/author/addauthor" method="post">
+	<fieldset>
+		<legend>Edit an Author</legend>
+		<?php
+			foreach($this->author as $author) {
+				echo '<label for="first_name">First Name: </label>';
+				echo '<input id="frist_name" name="first_name" type="text" value="' . $author['first_name'] . '" />';
+				echo '<label for="last_name">Last Name: </label>';
+				echo '<input id="last_name" name="last_name" type="text" value="' . $author['last_name'] . '" />';
+			}
+		?>
+		<input type="submit" value="Submit" />
+	</fieldset>
+</form>
