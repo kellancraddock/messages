@@ -16,6 +16,13 @@
 			$this->view->messages = $this->MessageModel->getMessages();
 			$this->view->alert = $this->session_alert;
 		}
+		
+		public function cancelAction()
+		{
+			$this->session_alert->type = "cancel";
+			$this->session_alert->message = "";
+			header("Location: /");
+		}
 	}
 	
 ?>
