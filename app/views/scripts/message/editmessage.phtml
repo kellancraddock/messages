@@ -1,0 +1,14 @@
+<form id="update_message" action="/message/updatemessage" method="post">
+	<fieldset>
+		<legend>Edit Message</legend>
+		<?php
+			foreach($this->message as $message) {
+				echo '<label for="message">Message: </label>';
+				echo '<input id="message" name="message" type="text" value="' . $message['message'] . '" />';
+				echo '<input id="id" name="id" type="hidden" value="' . $message['id'] . '" />';
+			}
+		?>
+		<input type="submit" value="Save" />
+	</fieldset>
+</form>
+<a href="/index/cancel">Cancel</a>
