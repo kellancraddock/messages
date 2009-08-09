@@ -9,18 +9,20 @@
 
 <body>
 	<div id="wrapper">
+		<h1>Message Application</h1>
 		<div id="controls">
+			<h2 class="<?= $this->alert->type ?>"><?= $this->alert->message ?></h2>
 			<form id="add_author" action="/author/addauthor" method="post">
 				<fieldset>
 					<legend>Add an Author</legend>
-					<label for="first_name">First</label>
-					<input type="text" name="first_name" id="first_name" value="first"/>
-					<label for="last_name">Last</label>
-					<input type="text" name="last_name" id="last_name" value="last"/>
+					<label for="first_name">First Name:</label>
+					<input type="text" name="first_name" id="first_name" />
+					<label for="last_name">Last Name:</label>
+					<input type="text" name="last_name" id="last_name" />
 					<input class="button" type="submit" value="Submit" />
 				</fieldset>
 			</form>
-			<form action="/author/editauthor" method="post">
+			<form id="edit_form" action="/author/editauthor" method="post">
 				<fieldset>
 					<legend>Edit an Author</legend>
 					<select id="edit_author" name="edit_author">
@@ -36,7 +38,7 @@
 			<form id="add_message" action="/message/addmessage" method="post">
 				<fieldset>
 					<legend>Add a Message</legend>
-					<label for="message">Message</label>
+					<label for="message">Message:</label>
 					<input type="text" id="message" name="message" />
 					<label for="author">By:</label>
 					<select id="author" name="author">
@@ -50,13 +52,34 @@
 				</fieldset>
 			</form>
 		</div>
-		<h2><?= $this->alert->message ?></h2>
+		<h3>Popular Authors</h3>
+		<table id="popular_authors">
+			<thead>
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Total Messages</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php
+					foreach($this->popular as $popular) {
+						echo '<tr>';
+						echo '<td>' . $popular['first_name'] . '</td>';
+						echo '<td>' . $popular['last_name'] . '</td>';
+						echo '<td>' . $popular['message_count'] . '</td>';
+						echo '</tr>';
+					}
+				?>
+			</tbody>
+		</table>
 		<div id="messages">
+			<h3>Messages</h3>
 			<?php
 				foreach($this->messages as $message) {
-					echo '<div>';
+					echo '<div class="message">';
 					echo '<p>';
-					echo '<em>' . $message['first_name'] . ' ' . $message['last_name'] . ' Says: </em>' . $message['message'];
+					echo '<em>' . $message['first_name'] . ' ' . $message['last_name'] . ': </em>' . $message['message'] . ' ';
 					echo '<a class="button" href="/message/deletemessage/id/' . $message['message_id'] . ' ' . '">Delete</a> ';
 					echo '<a class="button" href="/message/editmessage/id/' . $message['message_id'] . ' ' . '">Edit</a>';
 					echo '</p>';
