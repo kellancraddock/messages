@@ -14,6 +14,7 @@
 		{
 			$this->view->authors = $this->AuthorsModel->getAuthors();
 			$this->view->messages = $this->MessageModel->getMessages();
+			$this->view->popular = $this->AuthorsModel->getPopularAuthors();
 			$this->view->alert = $this->session_alert;
 		}
 		

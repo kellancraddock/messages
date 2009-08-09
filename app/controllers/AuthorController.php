@@ -1,11 +1,13 @@
 <?php
 	require_once('../app/models/AuthorsModel.php');
+	require_once('../app/models/MessageModel.php');
 	
 	class AuthorController extends Zend_Controller_Action
 	{
 		public function init() {
 			$this->session_alert = new Zend_Session_Namespace('alert');
 			$this->AuthorsModel = new AuthorsModel();
+			$this->MessagesModel = new MessageModel();
 		}
 		
 		public function indexAction()
@@ -44,10 +46,12 @@
 		{
 			$arguments = array($this->_request->getParam('id'));
 			$this->AuthorsModel->deleteAuthor($arguments);
+			$this->MessagesModel->deleteMessages($arguments);
 			$this->session_alert->type = "success";
 			$this->session_alert->message = "Author Deleted!";
 			header("Location: /");
 
 		}
+		
 	}
 ?>

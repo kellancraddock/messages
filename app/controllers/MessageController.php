@@ -7,6 +7,7 @@
 		{
 			$this->session_alert = new Zend_Session_Namespace('alert');
 			$this->MessageModel = new MessageModel();
+			$this->AuthorsModel = new MessageModel();
 		}
 		
 		public function indexAction()
@@ -18,6 +19,8 @@
 		{
 			$arguments = array($_POST['message'], $_POST['author']);
 			$this->MessageModel->addMessage($arguments);
+			$arguments = array($_POST['author'], 'up');
+			$this->AuthorsModel->addMessageCount($arguments);
 			$this->session_alert->type = "success";
 			$this->session_alert->message = "Message Added!";
 			header("Location: /");
@@ -28,6 +31,8 @@
 		{
 			$arguments = array($this->_request->getParam('id'));
 			$this->MessageModel->deleteMessage($arguments);
+			$arguments = array($_POST['author'], 'down');
+			$this->AuthorsModel->addMessageCount($arguments);
 			$this->session_alert->type = "success";
 			$this->session_alert->message = "Message Deleted!";
 			header("Location: /");
