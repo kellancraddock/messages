@@ -39,5 +39,15 @@
 			header("Location: /");
 		
 		}
+		
+		public function deleteauthorAction()
+		{
+			$arguments = array($this->_request->getParam('id'));
+			$this->AuthorsModel->deleteAuthor($arguments);
+			$this->session_alert->type = "success";
+			$this->session_alert->message = "Author Deleted!";
+			header("Location: /");
+
+		}
 	}
 ?>
