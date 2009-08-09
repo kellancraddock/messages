@@ -8,9 +8,10 @@
 				echo '<label for="last_name">Last Name: </label>';
 				echo '<input id="last_name" name="last_name" type="text" value="' . $author['last_name'] . '" />';
 				echo '<input id="id" name="id" type="hidden" value="' . $author['id'] . '" />';
+				echo '<a class="button" href="/author/deleteauthor/id/' . $author['id'] . '">Delete</a>';
 			}
 		?>
-		<input type="submit" value="Save" />
+		<input class="button" type="submit" value="Save" />
 	</fieldset>
 </form>
-<a href="/index/cancel">Cancel</a>
+<a class="button" href="/index/cancel">Cancel</a>

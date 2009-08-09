@@ -3,12 +3,12 @@
 		<legend>Edit Message</legend>
 		<?php
 			foreach($this->message as $message) {
-				echo '<label for="message">Message: </label>';
+				echo '<label for="message">' . $message['first_name'] . ' ' .  $message['last_name'] . ' Says: </label>';
 				echo '<input id="message" name="message" type="text" value="' . $message['message'] . '" />';
-				echo '<input id="id" name="id" type="hidden" value="' . $message['id'] . '" />';
+				echo '<input id="id" name="id" type="hidden" value="' . $message['message_id'] . '" />';
 			}
 		?>
-		<input type="submit" value="Save" />
+		<input class="button" type="submit" value="Save" />
 	</fieldset>
 </form>
-<a href="/index/cancel">Cancel</a>
+<a class="button" href="/index/cancel">Cancel</a>
