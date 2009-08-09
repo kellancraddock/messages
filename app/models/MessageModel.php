@@ -8,8 +8,10 @@
 			//Connect to database
 			$db = $this->getDefaultAdapter();
 			
+			$select = "SELECT m.id as message_id, m.message as message, a.first_name as first_name, a.last_name as last_name FROM $this->table as m, authors as a WHERE m.id = '{$arguments[0]}'";
+			
 			//Set arguments to select statement
-			$select = "SELECT * FROM $this->table WHERE id = '{$arguments[0]}'";
+			//$select = "SELECT * FROM $this->table WHERE id = '{$arguments[0]}'";
 		
 			//Select from table
 			return $db->fetchAssoc($select);
@@ -20,8 +22,7 @@
 			//Connect to database
 			$db = $this->getDefaultAdapter();
 			
-			//Set arguments to select statement
-			$select = "SELECT * FROM $this->table";
+			$select = "SELECT m.id as message_id, m.message as message, a.first_name as first_name, a.last_name as last_name FROM $this->table as m, authors as a WHERE m.author_id = a.id";
 		
 			//Select from table
 			return $db->fetchAssoc($select);

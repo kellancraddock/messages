@@ -58,5 +58,18 @@
 			//Update
 			return $db->update($this->table, $insertArgs, $where);
 		}
+		
+		function deleteAuthor($arguments)
+		{
+			//Connect to database
+			$db = $this->getDefaultAdapter();
+		
+			//Set arguments to select statement
+			$delete = "id = '{$arguments[0]}'";
+		
+			//Delete from table
+			return $db->delete($this->table, $delete);
+		}
+
 	}
 ?>
