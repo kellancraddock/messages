@@ -70,6 +70,18 @@
 			//Delete from table
 			return $db->delete($this->table, $delete);
 		}
+		
+		public function getPopularAuthors()
+		{
+			//Connect to database
+			$db = $this->getDefaultAdapter();
+			
+			//Set arguments to select statement
+			$select = "SELECT first_name, last_name, message_count FROM $this->table ORDER BY message_count DESC LIMIT 5";
+			
+			//Select from table
+			return $db->fetchAssoc($select);
+		}
 
 	}
 ?>
