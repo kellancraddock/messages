@@ -6,6 +6,28 @@ body {
 	font-size: 11px;
 }
 
+select {
+	margin-right: 5px;
+}
+
+fieldset {
+	border: 1px solid #ccc;
+}
+
+h3 {
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+}
+
+h2 {
+	padding: 5px;
+}
+
+.success {
+	background: #cbffa7;
+}
+
 .button {
 	color: #333;
 	background: url(/images/button.gif) ;
@@ -27,4 +49,41 @@ body {
 
 #messages em {
 	font-weight: bold;
+}
+
+#wrapper {
+	width: 900px;
+	margin: 0 auto;
+}
+
+#add_author {
+	width: 50%;
+	float: left;
+}
+
+#edit_form {
+	width: 50%;
+	float: left;
+}
+
+#add_message {
+	clear: both;
+}
+
+#add_author input[type="text"] {
+	width: 23%;
+	padding-right: 5px;
+}
+
+#popular_authors {
+	width: 100%;
+}
+
+#popular_authors thead th {
+	text-align: left;
+}
+
+.message {
+	padding: 10px;
+	border-bottom: 1px solid #ccc;
 }
